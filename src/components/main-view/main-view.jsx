@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import PropTypes from "prop-types";
+import { LoginView } from '../login-view/login-view';
+import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = useState(storedUser ? storedUser : null);
+    const [token, setToken] = useState(storedToken ? storedToken : null);
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const tmdbApiKey = "7b1ffea1c8f3081323fb2250e590d048";
@@ -18,6 +23,32 @@ export const MainView = () => {
                 console.error("Error fetching data: ", error);
             });
     }, [tmdbApiKey]);
+
+    useEffect(() => {
+        if (!token) return;
+
+        fetch("https://myflix-45677d7e298f.herokuapp.com/movies", {
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((response) => response.json())
+            .then((movies) => {
+                setMovies(movies);
+
+            });
+    }, [token]);
+
+
+    if (!user) {
+        return (
+            <> <LoginView onLoggedIn={(user, token) => {
+                setUser(user);
+                setToken(token);
+            }} />
+                or
+                < SignupView />
+            </>
+        );
+    }
 
     if (selectedMovie) {
         return (
@@ -40,10 +71,7 @@ export const MainView = () => {
                     }}
                 />
             ))}
+            <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
         </div>
-    );
-};
-
-MainView.propTypes = {
-    // Define PropTypes for your components as needed
+    )
 };
