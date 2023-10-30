@@ -5,20 +5,15 @@ export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+
     const handleSubmit = (event) => {
         // this prevents the default behavior of the form which is to reload the entire page
         event.preventDefault();
 
         const data = {
-            access: username,
-            secret: password
+            Username: username,
+            Password: password
         };
-
-        useEffect(() => {
-            if (!token) {
-                return;
-            }
-        })
 
         fetch("https://myflix-45677d7e298f.herokuapp.com/login", {
             method: "POST",
