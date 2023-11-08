@@ -5,8 +5,8 @@
 }
 
 .movie-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Maintains image aspect ratio while covering the container */
+    max-width: 200px;
+    /* Set your desired maximum width */
+    height: auto;
+    /* Height set to 'auto' to maintain the aspect ratio */
 }
