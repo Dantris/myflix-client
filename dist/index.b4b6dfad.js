@@ -35019,7 +35019,8 @@ const MovieView = ({ movie, onBackClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                     src: movie.image,
-                    alt: `Poster for ${movie.title}`
+                    alt: `Poster for ${movie.title}`,
+                    className: "movie-poster"
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
                     lineNumber: 11,
