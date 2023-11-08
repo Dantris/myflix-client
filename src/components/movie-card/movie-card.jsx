@@ -5,8 +5,8 @@ import "../movie-card/movie-card.scss"
 
 export const MovieCard = ({ movie, onMovieClick }) => {
     return (
-        <Card className="movie-card">
-            <Card.Img variant="top" src={movie.image} className="movie-image" />
+        <Card className="h-100">
+            <Card.Img variant="top" src={movie.image} />
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
                 <Card.Text>{movie.director}</Card.Text>
