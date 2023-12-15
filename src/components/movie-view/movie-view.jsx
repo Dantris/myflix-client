@@ -1,14 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 import '../movie-view/movie-view.scss'
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+    const { movieId } = useParams();
+    const movie = movies.find((m) => m.id === movieId);
+    console.log(movies)
+    console.log(movieId)
 
     return (
         <div>
             <div>
-                <img src={movie.image} alt={`Poster for ${movie.title}`} className='movie-poster' />
+                <img src={movie.image} alt={`Poster for ${movie.title}`} className='w-100' />
             </div>
             <div>
                 <span>Title: </span>
@@ -28,31 +34,25 @@ export const MovieView = ({ movie, onBackClick }) => {
             </div>
             <div>
                 <span>Genre: </span>
-                <span>
-                    {movie.genre}
-                </span>
+                <span>{movie.genre}</span>
             </div>
-            <button
-                onClick={onBackClick}
-                className="back-button"
-                style={{ cursor: "pointer" }}
-            >
-                Back
-            </button>
-
+            <Link to={`/`}>
+                <button className="back-button">Back</button>
+            </Link>
         </div>
     );
 };
 
 MovieView.propTypes = {
-    movie: PropTypes.shape({
-        image: PropTypes.string,
-        title: PropTypes.string,
-        director: PropTypes.string,
-        year: PropTypes.number,
-        genre: PropTypes.string,
-        // poster_path: PropTypes.string,
-        description: PropTypes.string,
-    }).isRequired,
-    onBackClick: PropTypes.func.isRequired,
+    movies: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            image: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            director: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            genre: PropTypes.string.isRequired,
+            year: PropTypes.number.isRequired
+        })
+    ).isRequired,
 };
