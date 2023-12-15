@@ -1,5 +1,8 @@
 # Movie Website
 
+![Main Page with Movie Cards](https://github.com/Dantris/myflix-client/blob/main/myflix_screen.png)
+
+
 This is a client-side movie website project with features for user login authentication and movie database integration. It allows users to log in, search for movies, and fetch data about movies. The project is built using HTML, CSS, and JavaScript.
 
 ## Table of Contents
@@ -35,5 +38,5 @@ To get started with the project, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/movie-website.git
-   cd movie-website
+   git clone https://github.com/Dantris/myflix-client
+   cd myflix-client
